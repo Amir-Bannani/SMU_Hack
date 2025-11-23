@@ -1,146 +1,231 @@
 import React, { useEffect, useState } from 'react';
-import { getTasks, getStats, getInsights } from '../services/taskService';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { getWeeklySummary } from '../services/taskService';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+// Simple Markdown Renderer Component
+const MarkdownRenderer = ({ content }) => {
+    if (!content) return null;
+
+    const sections = content.split(/###\s+/).filter(Boolean);
+
+    return (
+        <div className="markdown-content">
+            {sections.map((section, index) => {
+                const [title, ...bodyParts] = section.split('\n');
+                const body = bodyParts.join('\n');
+
+                // Parse bold text
+                const parseBold = (text) => {
+                    const parts = text.split(/(\*\*.*?\*\*)/g);
+                    return parts.map((part, i) => {
+                        if (part.startsWith('**') && part.endsWith('**')) {
+                            return <strong key={i}>{part.slice(2, -2)}</strong>;
+                        }
+                        return part;
+                    });
+                };
+
+                return (
+                    <div key={index} className="md-section">
+                        <h3 className="md-title">{title.trim()}</h3>
+                        <div className="md-body">
+                            {body.split('\n').map((line, i) => {
+                                if (!line.trim()) return null;
+
+                                // List items
+                                if (line.trim().startsWith('*') || line.trim().startsWith('-') || line.trim().match(/^\d+\./)) {
+                                    return (
+                                        <div key={i} className="md-list-item">
+                                            {parseBold(line.replace(/^[\*\-\d\.]+\s*/, ''))}
+                                        </div>
+                                    );
+                                }
+
+                                // Regular paragraphs
+                                return <p key={i}>{parseBold(line)}</p>;
+                            })}
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
+    );
+};
 
 const ManagerDashboard = () => {
-    const [tasks, setTasks] = useState([]);
-    const [stats, setStats] = useState(null);
-    const [insights, setInsights] = useState(null);
+    const [summaryData, setSummaryData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const tasksData = await getTasks();
-                setTasks(tasksData);
-                const statsData = await getStats();
-                setStats(statsData);
-                const insightsData = await getInsights();
-                setInsights(insightsData);
-            } catch (error) {
-                console.error("Failed to load data");
+                const data = await getWeeklySummary();
+                setSummaryData(data);
+                setLoading(false);
+            } catch (err) {
+                setError("Failed to load weekly summary. Please ensure the backend pipeline has been run.");
+                setLoading(false);
             }
         };
-
         fetchData();
     }, []);
 
-    const COLORS = ['#facc15', '#60a5fa', '#4ade80'];
+    if (loading) return <div className="loading">Loading Dashboard...</div>;
+    if (error) return <div className="error-message">{error}</div>;
+    if (!summaryData) return <div className="no-data">No data available</div>;
 
     return (
         <div className="dashboard-container">
             <header className="dashboard-header">
-                <h1>Manager Dashboard</h1>
-                <p>Welcome, Manager</p>
+                <div>
+                    <h1>Manager Dashboard</h1>
+                    <p className="subtitle">Team Performance & Burnout Analytics</p>
+                </div>
+                <div className="header-actions">
+                    <button
+                        className="btn-process"
+                        onClick={async () => {
+                            if (confirm("Process data for the next week? Ensure 'new_week_input.csv' is ready.")) {
+                                try {
+                                    const res = await fetch('http://localhost:5000/api/process-week', { method: 'POST' });
+                                    if (res.ok) {
+                                        alert("Week processed successfully! Refreshing...");
+                                        window.location.reload();
+                                    } else {
+                                        alert("Error processing week.");
+                                    }
+                                } catch (e) {
+                                    console.error(e);
+                                    alert("Failed to connect to backend.");
+                                }
+                            }
+                        }}
+                    >
+                        ⏩ Process Next Week
+                    </button>
+                    <span className="date-badge">{summaryData.week_id}</span>
+                </div>
             </header>
 
             <div className="dashboard-grid">
-                <div className="card task-database">
-                    <h2>IT Task Database</h2>
-                    <div className="task-list">
-                        {tasks.length === 0 ? (
-                            <p>No tasks available</p>
-                        ) : (
-                            <table className="task-table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Status</th>
-                                        <th>Assignee</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {tasks.map(task => (
-                                        <tr key={task.id}>
-                                            <td>{task.id}</td>
-                                            <td>{task.title}</td>
-                                            <td>
-                                                <span className={`status-badge ${task.status.toLowerCase().replace(' ', '-')}`}>
-                                                    {task.status}
-                                                </span>
-                                            </td>
-                                            <td>{task.assignee}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        )}
+                {/* Burnout Risk Analysis */}
+                <div className="card burnout-section">
+                    <div className="card-header">
+                        <h3>🔥 Burnout Risk Analysis</h3>
+                        <span className="card-subtitle">Predicted risk based on workload & difficulty</span>
+                    </div>
+                    <div className="risk-list">
+                        {summaryData?.burnout_analysis?.map((emp, index) => (
+                            <div key={index} className="risk-item">
+                                <div className="risk-info">
+                                    <span className="emp-name">{emp.Name}</span>
+                                    <span className={`risk-label ${emp['Burnout Rate'] > 0.7 ? 'critical' : emp['Burnout Rate'] > 0.5 ? 'warning' : 'normal'}`}>
+                                        {(emp['Burnout Rate'] * 100).toFixed(0)}% Risk
+                                    </span>
+                                </div>
+                                <div className="risk-meter">
+                                    <div
+                                        className="risk-fill"
+                                        style={{
+                                            width: `${emp['Burnout Rate'] * 100}%`,
+                                            backgroundColor: emp['Burnout Rate'] > 0.7 ? '#ef4444' : emp['Burnout Rate'] > 0.5 ? '#f59e0b' : '#22c55e'
+                                        }}
+                                    ></div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
-                <div className="card employee-stats">
-                    <h2>Employee Statistics</h2>
-                    {stats ? (
-                        <div className="charts-container">
-                            <div className="chart-wrapper">
-                                <h3>Performance Trend</h3>
-                                <ResponsiveContainer width="100%" height={200}>
-                                    <BarChart data={stats.performance}>
-                                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                                        <XAxis dataKey="name" stroke="#94a3b8" />
-                                        <YAxis stroke="#94a3b8" />
-                                        <Tooltip
-                                            contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }}
-                                            itemStyle={{ color: '#e2e8f0' }}
-                                        />
-                                        <Bar dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                                    </BarChart>
-                                </ResponsiveContainer>
+                {/* Attention Required */}
+                <div className="card attention-section">
+                    <div className="card-header">
+                        <h3>⚠️ Attention Required</h3>
+                    </div>
+                    <div className="attention-list">
+                        {summaryData?.underperformance_report?.priority_actions?.length > 0 ? (
+                            summaryData.underperformance_report.priority_actions.map((action, index) => (
+                                <div key={index} className={`attention-item ${action.priority.toLowerCase()}`}>
+                                    <div className="attention-header">
+                                        <span className="employee-name">{action.employee}</span>
+                                        <span className={`priority-badge ${action.priority.toLowerCase()}`}>
+                                            {action.priority}
+                                        </span>
+                                    </div>
+                                    <p className="attention-reason">{action.reason}</p>
+                                    <div className="recommendation-box">
+                                        <strong>Recommended Action:</strong>
+                                        <p>{action.action}</p>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="empty-state">
+                                <p>No urgent actions required.</p>
                             </div>
-
-                            <div className="chart-wrapper">
-                                <h3>Task Distribution</h3>
-                                <ResponsiveContainer width="100%" height={200}>
-                                    <PieChart>
-                                        <Pie
-                                            data={stats.taskDistribution}
-                                            cx="50%"
-                                            cy="50%"
-                                            innerRadius={60}
-                                            outerRadius={80}
-                                            fill="#8884d8"
-                                            paddingAngle={5}
-                                            dataKey="value"
-                                        >
-                                            {stats.taskDistribution.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                            ))}
-                                        </Pie>
-                                        <Tooltip
-                                            contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }}
-                                            itemStyle={{ color: '#e2e8f0' }}
-                                        />
-                                        <Legend />
-                                    </PieChart>
-                                </ResponsiveContainer>
-                            </div>
-                        </div>
-                    ) : (
-                        <p>Loading statistics...</p>
-                    )}
+                        )}
+                    </div>
                 </div>
+            </div>
 
-                <div className="card ai-insights">
-                    <h2>AI Insights</h2>
-                    {insights ? (
-                        <div className="insights-content">
-                            <div className="insight-item">
-                                <h3>Productivity Analysis</h3>
-                                <p>{insights.productivity}</p>
-                            </div>
-                            <div className="insight-item">
-                                <h3>Risk Assessment</h3>
-                                <p>{insights.risk}</p>
-                            </div>
-                            <div className="insight-item">
-                                <h3>Recommendation</h3>
-                                <p>{insights.recommendation}</p>
-                            </div>
-                        </div>
-                    ) : (
-                        <p>Generating AI insights...</p>
-                    )}
+            {/* AI Executive Summary */}
+            <div className="card ai-section">
+                <div className="card-header">
+                    <h3>🤖 AI Executive Summary</h3>
                 </div>
+                <div className="ai-content">
+                    <MarkdownRenderer content={summaryData?.ai_insights} />
+                </div>
+            </div>
+
+            {/* Team Overview Table */}
+            <div className="card team-section">
+                <div className="card-header">
+                    <h3>👥 Team Performance Overview</h3>
+                </div>
+                <table className="data-table">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Role</th>
+                            <th>Performance</th>
+                            <th>Workload</th>
+                            <th>Difficulty</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {summaryData?.underperformance_report?.individuals?.map((emp) => (
+                            <tr key={emp.employee_id} className={`row-${emp.severity.toLowerCase()}`}>
+                                <td>{emp.name}</td>
+                                <td>{emp.metrics.designation_level}</td>
+                                <td>
+                                    <div className="score-bar-container">
+                                        <div
+                                            className="score-bar"
+                                            style={{
+                                                width: `${emp.performance_score * 10}%`,
+                                                backgroundColor: emp.performance_score > 7 ? '#10b981' : emp.performance_score > 4 ? '#f59e0b' : '#ef4444'
+                                            }}
+                                        />
+                                        <span>{emp.performance_score}</span>
+                                    </div>
+                                </td>
+                                <td>{emp.metrics.resource_allocation}/10</td>
+                                <td>
+                                    <span className={`status-dot ${emp.metrics.fatigue_score > 7 ? 'critical' : emp.metrics.fatigue_score > 5 ? 'warning' : 'good'}`}></span>
+                                    {emp.metrics.fatigue_score}
+                                </td>
+                                <td>
+                                    <span className={`badge ${emp.severity.toLowerCase()}`}>
+                                        {emp.severity}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     );

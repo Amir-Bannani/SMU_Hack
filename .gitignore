@@ -1,0 +1,24 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Large AI/ML Model Weights (Exceeds GitHub 100MB Limit)
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.h5
+
+# Node dependencies & build outputs (Frontend)
+node_modules/
+dist/
+build/
+
+# Environment and local IDE configs
+.env
+.env.local
+.vscode/
+.idea/
+*.log

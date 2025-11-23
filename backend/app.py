@@ -1,52 +1,58 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from flask_cors import CORS
 import os
+import json
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
-def hello():
-    return jsonify({"message": "Hello from Flask!"})
+# Constants
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, 'data')
 
-tasks = [
-    {"id": 1, "title": "Update Server Security", "status": "Pending", "assignee": "John Doe"},
-    {"id": 2, "title": "Fix Login Bug", "status": "In Progress", "assignee": "Jane Smith"},
-    {"id": 3, "title": "Deploy New Feature", "status": "Completed", "assignee": "Mike Johnson"}
-]
+@app.route('/api/weekly-summary', methods=['GET'])
+def get_weekly_summary():
+    try:
+        # Path to the generated JSON
+        data_path = os.path.join(DATA_DIR, 'weekly_summary.json')
+        
+        if not os.path.exists(data_path):
+            return jsonify({"error": "Weekly summary not found. Please run the pipeline first."}), 404
+            
+        with open(data_path, 'r') as f:
+            data = json.load(f)
+            
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-@app.route('/api/tasks', methods=['GET'])
-def get_tasks():
-    return jsonify(tasks)
+@app.route('/api/ceo-summary', methods=['GET'])
+def get_ceo_summary():
+    try:
+        file_path = os.path.join(DATA_DIR, 'ceo_summary.json')
+        if os.path.exists(file_path):
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+            return jsonify(data)
+        else:
+            return jsonify({"error": "CEO summary not found"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-@app.route('/api/stats', methods=['GET'])
-def get_stats():
-    stats = {
-        "performance": [
-            {"name": "Jan", "value": 65},
-            {"name": "Feb", "value": 72},
-            {"name": "Mar", "value": 85},
-            {"name": "Apr", "value": 78},
-            {"name": "May", "value": 90},
-            {"name": "Jun", "value": 88}
-        ],
-        "taskDistribution": [
-            {"name": "Pending", "value": 5},
-            {"name": "In Progress", "value": 8},
-            {"name": "Completed", "value": 12}
-        ]
-    }
-    return jsonify(stats)
-
-@app.route('/api/insights', methods=['GET'])
-def get_insights():
-    # Mock AI response
-    insights = {
-        "productivity": "Team productivity has increased by 15% this month. High performance observed in the backend team.",
-        "risk": "Potential burnout detected in the frontend team due to high task volume.",
-        "recommendation": "Consider redistributing tasks from the frontend team to balance the workload. Schedule a team building activity."
-    }
-    return jsonify(insights)
+@app.route('/api/process-week', methods=['POST'])
+def process_week():
+    try:
+        from pipeline import DataPipeline
+        # Assuming app.py is in backend/ and pipeline.py is in backend/
+        # BASE_DIR is backend/
+        # pipeline expects base_dir to be the project root (SMU/)
+        project_root = os.path.dirname(BASE_DIR)
+        pipeline = DataPipeline(project_root)
+        pipeline.run()
+        return jsonify({"message": "Week processed successfully"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", port=5000)
+

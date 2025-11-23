@@ -2,32 +2,42 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api';
 
-export const getTasks = async () => {
+export const getProjects = async () => {
     try {
-        const response = await axios.get(`${API_URL}/tasks`);
+        const response = await axios.get(`${API_URL}/projects`);
         return response.data;
     } catch (error) {
-        console.error("Error fetching tasks:", error);
+        console.error("Error fetching projects:", error);
         throw error;
     }
 };
 
-export const getStats = async () => {
+export const getProjectDashboard = async (projectId) => {
     try {
-        const response = await axios.get(`${API_URL}/stats`);
+        const response = await axios.get(`${API_URL}/projects/${projectId}/dashboard`);
         return response.data;
     } catch (error) {
-        console.error("Error fetching stats:", error);
+        console.error("Error fetching project dashboard:", error);
         throw error;
     }
 };
 
-export const getInsights = async () => {
+export const getCeoDashboard = async () => {
     try {
-        const response = await axios.get(`${API_URL}/insights`);
+        const response = await axios.get(`${API_URL}/dashboard/ceo`);
         return response.data;
     } catch (error) {
-        console.error("Error fetching insights:", error);
+        console.error("Error fetching CEO dashboard:", error);
+        throw error;
+    }
+};
+
+export const getWeeklySummary = async () => {
+    try {
+        const response = await axios.get(`${API_URL}/weekly-summary`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching weekly summary:", error);
         throw error;
     }
 };

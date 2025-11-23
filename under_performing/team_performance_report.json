@@ -1,0 +1,168 @@
+{
+  "report_metadata": {
+    "total_employees": 8,
+    "analysis_date": "2025-11-22 21:37:39"
+  },
+  "summary": {
+    "healthy": 4,
+    "underperforming": 4,
+    "critical": 2,
+    "warning": 2,
+    "caution": 0,
+    "underperformance_rate_pct": 50.0,
+    "avg_performance_score": 7.5
+  },
+  "priority_actions": [
+    {
+      "employee_id": "E004",
+      "name": "David Lee",
+      "score": 3.3,
+      "status": "CRITICAL",
+      "action": "Urgent: Immediate intervention"
+    },
+    {
+      "employee_id": "E008",
+      "name": "Henry Martinez",
+      "score": 5.3,
+      "status": "CRITICAL",
+      "action": "Urgent: Immediate intervention"
+    },
+    {
+      "employee_id": "E002",
+      "name": "Bob Smith",
+      "score": 5.7,
+      "status": "WARNING",
+      "action": "Schedule performance review"
+    },
+    {
+      "employee_id": "E006",
+      "name": "Frank Brown",
+      "score": 7.7,
+      "status": "WARNING",
+      "action": "Schedule performance review"
+    }
+  ],
+  "all_employees": [
+    {
+      "employee_id": "E001",
+      "name": "Alice Johnson",
+      "performance_score": 10.0,
+      "status": "NORMAL",
+      "underperforming": false,
+      "resource_allocation": 8.0,
+      "fatigue_score": 3.0,
+      "designation": 4.0,
+      "issues": [
+        "Good performance"
+      ],
+      "action_needed": "Continue current track"
+    },
+    {
+      "employee_id": "E002",
+      "name": "Bob Smith",
+      "performance_score": 5.7,
+      "status": "WARNING",
+      "underperforming": true,
+      "resource_allocation": 3.0,
+      "fatigue_score": 7.5,
+      "designation": 3.0,
+      "issues": [
+        "Underperforming",
+        "Low workload but high fatigue",
+        "Fatigue exceeds tolerance for level"
+      ],
+      "action_needed": "Schedule performance review"
+    },
+    {
+      "employee_id": "E003",
+      "name": "Carol Davis",
+      "performance_score": 9.0,
+      "status": "NORMAL",
+      "underperforming": false,
+      "resource_allocation": 6.0,
+      "fatigue_score": 5.0,
+      "designation": 2.0,
+      "issues": [
+        "Good performance"
+      ],
+      "action_needed": "Continue current track"
+    },
+    {
+      "employee_id": "E004",
+      "name": "David Lee",
+      "performance_score": 3.3,
+      "status": "CRITICAL",
+      "underperforming": true,
+      "resource_allocation": 2.0,
+      "fatigue_score": 8.5,
+      "designation": 4.0,
+      "issues": [
+        "Severely underperforming",
+        "Low workload but high fatigue",
+        "Very low workload for senior level",
+        "Critical fatigue with moderate workload",
+        "Fatigue exceeds tolerance for level"
+      ],
+      "action_needed": "Urgent: Immediate intervention"
+    },
+    {
+      "employee_id": "E005",
+      "name": "Eve Wilson",
+      "performance_score": 9.9,
+      "status": "NORMAL",
+      "underperforming": false,
+      "resource_allocation": 7.0,
+      "fatigue_score": 2.0,
+      "designation": 1.0,
+      "issues": [
+        "Good performance"
+      ],
+      "action_needed": "Continue current track"
+    },
+    {
+      "employee_id": "E006",
+      "name": "Frank Brown",
+      "performance_score": 7.7,
+      "status": "WARNING",
+      "underperforming": true,
+      "resource_allocation": 4.0,
+      "fatigue_score": 6.5,
+      "designation": 2.0,
+      "issues": [
+        "Low workload but high fatigue"
+      ],
+      "action_needed": "Schedule performance review"
+    },
+    {
+      "employee_id": "E007",
+      "name": "Grace Taylor",
+      "performance_score": 8.8,
+      "status": "NORMAL",
+      "underperforming": false,
+      "resource_allocation": 9.0,
+      "fatigue_score": 7.0,
+      "designation": 5.0,
+      "issues": [
+        "Good performance"
+      ],
+      "action_needed": "Continue current track"
+    },
+    {
+      "employee_id": "E008",
+      "name": "Henry Martinez",
+      "performance_score": 5.3,
+      "status": "CRITICAL",
+      "underperforming": true,
+      "resource_allocation": 2.5,
+      "fatigue_score": 9.0,
+      "designation": 1.0,
+      "issues": [
+        "Underperforming",
+        "Low workload but high fatigue",
+        "Critical fatigue with moderate workload",
+        "Fatigue exceeds tolerance for level"
+      ],
+      "action_needed": "Urgent: Immediate intervention"
+    }
+  ]
+}

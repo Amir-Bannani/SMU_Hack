@@ -1,0 +1,13 @@
+Employee ID,Date of Joining,Gender,Company Type,WFH Setup Available,Designation,Resource Allocation,Difficulty Work Score
+fffe31003300390039003000,2008-12-10,Female,Service,No,2.0,6.0,7.4
+fffe31003300310037003800,2008-08-14,Female,Product,Yes,1.0,4.5,6.1
+fffe33003400380035003900,2008-11-13,Male,Product,Yes,1.0,5.0,5.5
+fffe3100370039003200,2008-02-07,Female,Service,No,3.0,7.0,4.1
+fffe32003600390036003700,2008-07-17,Female,Product,No,2.0,3.5,6.6
+fffe3600390032003200,2008-09-19,Male,Product,No,3.0,4.0,6.9
+fffe3600370032003200,2008-01-16,Female,Service,Yes,2.0,6.5,4.0
+fffe32003900390030003000,2008-02-10,Male,Service,No,2.0,5.0,8.3
+fffe3100370031003000,2008-08-10,Male,Product,Yes,2.0,7.0,7.2
+fffe31003500320037003600,2008-05-20,Male,Product,Yes,2.0,3.0,5.1
+fffe3400370031003100,2008-12-17,Male,Service,Yes,2.0,6.0,5.7
+fffe32003800300035003300,2008-03-26,Female,Service,Yes,2.0,4.5,3.8

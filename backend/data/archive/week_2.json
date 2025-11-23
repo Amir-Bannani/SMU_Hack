@@ -1,0 +1,416 @@
+{
+  "week_id": "Week 2",
+  "burnout_analysis": [
+    {
+      "Employee ID": "fffe31003300390039003000",
+      "Name": "Aziz Zarrouk",
+      "Burnout Rate": 0.6032508415241047,
+      "Difficulty Work Score": 7.1
+    },
+    {
+      "Employee ID": "fffe31003300310037003800",
+      "Name": "Ines Hammami",
+      "Burnout Rate": 0.5274529399542156,
+      "Difficulty Work Score": 6.3
+    },
+    {
+      "Employee ID": "fffe33003400380035003900",
+      "Name": "Mohamed Zarrouk",
+      "Burnout Rate": 0.45133539937865175,
+      "Difficulty Work Score": 5.8
+    },
+    {
+      "Employee ID": "fffe3100370039003200",
+      "Name": "Mohamed Riahi",
+      "Burnout Rate": 0.33304586068309205,
+      "Difficulty Work Score": 4.4
+    },
+    {
+      "Employee ID": "fffe32003600390036003700",
+      "Name": "Chiraz Hammami",
+      "Burnout Rate": 0.6798759978940662,
+      "Difficulty Work Score": 7.9
+    },
+    {
+      "Employee ID": "fffe3600390032003200",
+      "Name": "Ines Oueslati",
+      "Burnout Rate": 0.40044277662719613,
+      "Difficulty Work Score": 5.2
+    },
+    {
+      "Employee ID": "fffe3600370032003200",
+      "Name": "Youssef Riahi",
+      "Burnout Rate": 0.3734965851929065,
+      "Difficulty Work Score": 4.1
+    },
+    {
+      "Employee ID": "fffe32003900390030003000",
+      "Name": "Ahmed Bouazizi",
+      "Burnout Rate": 0.725649515850004,
+      "Difficulty Work Score": 8.8
+    },
+    {
+      "Employee ID": "fffe3100370031003000",
+      "Name": "Yasmine Ben Ali",
+      "Burnout Rate": 0.5236573022755645,
+      "Difficulty Work Score": 7.4
+    },
+    {
+      "Employee ID": "fffe31003500320037003600",
+      "Name": "Youssef Ayari",
+      "Burnout Rate": 0.44716202564119734,
+      "Difficulty Work Score": 6.1
+    },
+    {
+      "Employee ID": "fffe3400370031003100",
+      "Name": "Aziz Trabelsi",
+      "Burnout Rate": 0.5111833428079353,
+      "Difficulty Work Score": 5.6
+    },
+    {
+      "Employee ID": "fffe32003800300035003300",
+      "Name": "Salma Mabrouk",
+      "Burnout Rate": 0.2525607654217971,
+      "Difficulty Work Score": 3.9
+    }
+  ],
+  "underperformance_report": {
+    "summary": {
+      "total_employees": 12,
+      "underperforming_count": 3,
+      "critical_cases": 1,
+      "warning_cases": 2,
+      "healthy_count": 9,
+      "underperformance_rate": 25.0
+    },
+    "individuals": [
+      {
+        "employee_id": "fffe31003300390039003000",
+        "name": "Aziz Zarrouk",
+        "is_underperforming": true,
+        "severity": "WARNING",
+        "performance_score": 7.4,
+        "metrics": {
+          "resource_allocation": 4.0,
+          "fatigue_score": 7.1,
+          "designation": 2.0,
+          "designation_level": "Mid-Level"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.8,
+          "workload_status": "Low",
+          "fatigue_status": "High",
+          "performance_level": "Good",
+          "flags": [
+            "Fatigue exceeds expected tolerance for Mid-Level level"
+          ]
+        },
+        "recommendations": [
+          "\u26a0\ufe0f High Risk: Schedule 1-on-1 to discuss burnout",
+          "Review workload distribution immediately"
+        ]
+      },
+      {
+        "employee_id": "fffe31003300310037003800",
+        "name": "Ines Hammami",
+        "is_underperforming": false,
+        "severity": "NORMAL",
+        "performance_score": 8.7,
+        "metrics": {
+          "resource_allocation": 6.0,
+          "fatigue_score": 6.3,
+          "designation": 1.0,
+          "designation_level": "Associate"
+        },
+        "analysis": {
+          "fatigue_tolerance": 7.4,
+          "workload_status": "Moderate",
+          "fatigue_status": "Moderate",
+          "performance_level": "Very Good",
+          "flags": [
+            "Good performance"
+          ]
+        },
+        "recommendations": [
+          "\u2713 Performance is strong - maintain current support"
+        ]
+      },
+      {
+        "employee_id": "fffe33003400380035003900",
+        "name": "Mohamed Zarrouk",
+        "is_underperforming": false,
+        "severity": "NORMAL",
+        "performance_score": 8.6,
+        "metrics": {
+          "resource_allocation": 5.0,
+          "fatigue_score": 5.8,
+          "designation": 1.0,
+          "designation_level": "Associate"
+        },
+        "analysis": {
+          "fatigue_tolerance": 7.4,
+          "workload_status": "Moderate",
+          "fatigue_status": "Moderate",
+          "performance_level": "Very Good",
+          "flags": [
+            "Good performance"
+          ]
+        },
+        "recommendations": [
+          "\u2713 Performance is strong - maintain current support"
+        ]
+      },
+      {
+        "employee_id": "fffe3100370039003200",
+        "name": "Mohamed Riahi",
+        "is_underperforming": false,
+        "severity": "NORMAL",
+        "performance_score": 7.3,
+        "metrics": {
+          "resource_allocation": 3.0,
+          "fatigue_score": 4.4,
+          "designation": 3.0,
+          "designation_level": "Senior"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.2,
+          "workload_status": "Low",
+          "fatigue_status": "Low",
+          "performance_level": "Good",
+          "flags": [
+            "Average performance"
+          ]
+        },
+        "recommendations": [
+          "\u2713 Performance is strong - maintain current support"
+        ]
+      },
+      {
+        "employee_id": "fffe32003600390036003700",
+        "name": "Chiraz Hammami",
+        "is_underperforming": false,
+        "severity": "NORMAL",
+        "performance_score": 8.4,
+        "metrics": {
+          "resource_allocation": 7.0,
+          "fatigue_score": 7.9,
+          "designation": 2.0,
+          "designation_level": "Mid-Level"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.8,
+          "workload_status": "High",
+          "fatigue_status": "High",
+          "performance_level": "Very Good",
+          "flags": [
+            "Good performance"
+          ]
+        },
+        "recommendations": [
+          "\u26a0\ufe0f High Risk: Schedule 1-on-1 to discuss burnout",
+          "Review workload distribution immediately"
+        ]
+      },
+      {
+        "employee_id": "fffe3600390032003200",
+        "name": "Ines Oueslati",
+        "is_underperforming": false,
+        "severity": "NORMAL",
+        "performance_score": 8.1,
+        "metrics": {
+          "resource_allocation": 4.5,
+          "fatigue_score": 5.2,
+          "designation": 3.0,
+          "designation_level": "Senior"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.2,
+          "workload_status": "Low",
+          "fatigue_status": "Moderate",
+          "performance_level": "Very Good",
+          "flags": [
+            "Good performance"
+          ]
+        },
+        "recommendations": [
+          "\u2713 Performance is strong - maintain current support"
+        ]
+      },
+      {
+        "employee_id": "fffe3600370032003200",
+        "name": "Youssef Riahi",
+        "is_underperforming": false,
+        "severity": "NORMAL",
+        "performance_score": 9.2,
+        "metrics": {
+          "resource_allocation": 6.0,
+          "fatigue_score": 4.1,
+          "designation": 2.0,
+          "designation_level": "Mid-Level"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.8,
+          "workload_status": "Moderate",
+          "fatigue_status": "Low",
+          "performance_level": "Excellent",
+          "flags": [
+            "Good performance"
+          ]
+        },
+        "recommendations": [
+          "\u2713 Performance is strong - maintain current support"
+        ]
+      },
+      {
+        "employee_id": "fffe32003900390030003000",
+        "name": "Ahmed Bouazizi",
+        "is_underperforming": true,
+        "severity": "CRITICAL",
+        "performance_score": 7.2,
+        "metrics": {
+          "resource_allocation": 5.5,
+          "fatigue_score": 8.8,
+          "designation": 2.0,
+          "designation_level": "Mid-Level"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.8,
+          "workload_status": "Moderate",
+          "fatigue_status": "Critical",
+          "performance_level": "Good",
+          "flags": [
+            "Critical fatigue level with moderate workload",
+            "Fatigue exceeds expected tolerance for Mid-Level level"
+          ]
+        },
+        "recommendations": [
+          "\ud83d\udea8 URGENT: Immediate workload relief required",
+          "Mandatory time off or role restructuring"
+        ]
+      },
+      {
+        "employee_id": "fffe3100370031003000",
+        "name": "Yasmine Ben Ali",
+        "is_underperforming": true,
+        "severity": "WARNING",
+        "performance_score": 6.4,
+        "metrics": {
+          "resource_allocation": 3.0,
+          "fatigue_score": 7.4,
+          "designation": 2.0,
+          "designation_level": "Mid-Level"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.8,
+          "workload_status": "Low",
+          "fatigue_status": "High",
+          "performance_level": "Average",
+          "flags": [
+            "Below average performance",
+            "Fatigue exceeds expected tolerance for Mid-Level level"
+          ]
+        },
+        "recommendations": [
+          "\u26a0\ufe0f High Risk: Schedule 1-on-1 to discuss burnout",
+          "Review workload distribution immediately"
+        ]
+      },
+      {
+        "employee_id": "fffe31003500320037003600",
+        "name": "Youssef Ayari",
+        "is_underperforming": false,
+        "severity": "NORMAL",
+        "performance_score": 7.9,
+        "metrics": {
+          "resource_allocation": 4.0,
+          "fatigue_score": 6.1,
+          "designation": 2.0,
+          "designation_level": "Mid-Level"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.8,
+          "workload_status": "Low",
+          "fatigue_status": "Moderate",
+          "performance_level": "Good",
+          "flags": [
+            "Average performance"
+          ]
+        },
+        "recommendations": [
+          "\u2713 Performance is strong - maintain current support"
+        ]
+      },
+      {
+        "employee_id": "fffe3400370031003100",
+        "name": "Aziz Trabelsi",
+        "is_underperforming": false,
+        "severity": "NORMAL",
+        "performance_score": 9.2,
+        "metrics": {
+          "resource_allocation": 7.0,
+          "fatigue_score": 5.6,
+          "designation": 2.0,
+          "designation_level": "Mid-Level"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.8,
+          "workload_status": "High",
+          "fatigue_status": "Moderate",
+          "performance_level": "Excellent",
+          "flags": [
+            "Good performance"
+          ]
+        },
+        "recommendations": [
+          "\u2713 Performance is strong - maintain current support"
+        ]
+      },
+      {
+        "employee_id": "fffe32003800300035003300",
+        "name": "Salma Mabrouk",
+        "is_underperforming": false,
+        "severity": "NORMAL",
+        "performance_score": 8.5,
+        "metrics": {
+          "resource_allocation": 4.0,
+          "fatigue_score": 3.9,
+          "designation": 2.0,
+          "designation_level": "Mid-Level"
+        },
+        "analysis": {
+          "fatigue_tolerance": 6.8,
+          "workload_status": "Low",
+          "fatigue_status": "Low",
+          "performance_level": "Very Good",
+          "flags": [
+            "Good performance"
+          ]
+        },
+        "recommendations": [
+          "\u2713 Performance is strong - maintain current support"
+        ]
+      }
+    ],
+    "priority_actions": [
+      {
+        "priority": "URGENT",
+        "employee": "Ahmed Bouazizi",
+        "action": "Immediate intervention required",
+        "reason": "Critical fatigue level with moderate workload, Fatigue exceeds expected tolerance for Mid-Level level"
+      },
+      {
+        "priority": "HIGH",
+        "employee": "Aziz Zarrouk",
+        "action": "Schedule review meeting",
+        "reason": "Fatigue exceeds expected tolerance for Mid-Level level"
+      },
+      {
+        "priority": "HIGH",
+        "employee": "Yasmine Ben Ali",
+        "action": "Schedule review meeting",
+        "reason": "Below average performance, Fatigue exceeds expected tolerance for Mid-Level level"
+      }
+    ]
+  },
+  "ai_insights": "### 1. Executive Summary\n\n*   **Elevated Burnout Risk within Mid-Level Roles:** The data indicates a higher concentration of burnout risk among Mid-Level employees compared to other roles, warranting further investigation.\n*   **Workload and Difficulty Correlation:** There's a general trend showing a positive correlation between workload, task difficulty, and predicted burnout scores. High workload coupled with high difficulty appears to be a key driver.\n*   **Performance Buffer:** Higher performance scores seem to somewhat mitigate the impact of workload and difficulty on burnout, suggesting a sense of accomplishment and efficacy may act as a protective factor.\n*   **Ahmed Bouazizi stands out** Ahmed Bouazizi has a high workload, the highest difficulty score and the highest predicted burnout score.\n\n### 2. Critical Risk Areas\n\n*   **Mid-Level Employees:** This group demonstrates the highest average predicted burnout score. Specific attention should be given to this cohort.\n*   **Individual Risk: Ahmed Bouazizi:** Ahmed Bouazizi's profile is concerning. A workload of 5.5 combined with a difficulty score of 8.8 results in a high predicted burnout score of 0.7256.\n*   **High Workload Concerns:** Chiraz Hammami and Aziz Trabelsi also have high workloads(7.0), so they will also need monitoring.\n\n### 3. Strategic Recommendations\n\n1.  **Immediate Check-in with Ahmed Bouazizi:** Schedule a one-on-one meeting with Ahmed to discuss workload, challenges, and potential support. Focus on identifying specific pain points and offering immediate assistance.\n2.  **Workload Re-Evaluation for Mid-Level Roles:** Conduct a thorough review of current projects and responsibilities assigned to Mid-Level employees. Identify opportunities to redistribute tasks, streamline processes, or provide additional resources.\n3.  **Implement a Task Prioritization and Time Management Training:** Offer training on effective task prioritization and time management techniques. This can help employees better manage their workloads and reduce stress levels. This training would benefit all employees, especially Ahmed, Chiraz, and Aziz Trabelsi.\n"
+}
