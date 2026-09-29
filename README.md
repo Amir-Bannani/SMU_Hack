@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/9d1926c7-88af-454f-b671-08f01e3bbb76
+
 # Responsible Leadership System
 
 A hackathon project designed to help companies practice responsible leadership by detecting burnout, workload inequity, and bias using AI-driven analytics.
